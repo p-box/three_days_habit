@@ -41,6 +41,12 @@ RSpec.configure do |config|
   #05/16追記
   config.includeFactoryBot::Syntax::Methods
 
+  #deviseのテストを書くためのに追記
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
+  config.extend ControllerMacros, :type => :controller
+
+
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
   # instead of true.
