@@ -1,0 +1,6 @@
+version: '3'
+services:
+  web:
+    command: /bin/sh -c "while sleep 1000; do :; done" 
+  # -cで渡される文字列をコマンドとして認識し、実行する。
+  # docker起動時にRailsが起動しないようにする。なぜ？

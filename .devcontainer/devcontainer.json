@@ -1,0 +1,21 @@
+{
+	"name": "web-container",
+	"service": "web",//docker-compose.ymlで記載されている起動対象のサービス名、Railsのサービスを指定します
+  	"workspaceFolder": "/con-habit-app",//起動時に接続するディレクトリ
+	"dockerComposeFile": [ //2つ目のdocker-compose.ymlで1つ目の設定を上書きます
+		"../docker-compose.yml",
+		"docker-compose.yml"
+	],
+	"customizations": {
+        "vscode":{
+            "extensions":[
+                "castwide.solargraph", // solargraph
+				"rebornix.Ruby", // Rubyのシンタックスハイライトなど
+				"misogi.ruby-rubocop", // Rubocop
+				"KoichiSasada.vscode-rdbg" // Ruby Debug　後述
+            ]
+        }
+    }
+
+  
+}
