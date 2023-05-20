@@ -18,12 +18,30 @@ class PostsController < ApplicationController
     end
     
     def edit 
+        @post = Post.find(params[:id])
     end
 
     def update
+        @post = Post.find(params[:id])
+        @user = current_user
+        if @post.update(post_params)
+            flash[:notice] = "投稿を編集しました"
+            redirect_to user_path(@user)
+        else
+            render :edit, status: :unprocessable_entity
+        end
     end
     
     def destroy
+        @post = Post.find(params[:id])
+        @user = current_user
+        if @post.destroy
+            flash[:notice] = "投稿を削除しました"
+            redirect_to user_path(@user)
+        else
+            flash[:notice] = "投稿の削除に失敗しました"
+            redirect_to user_path(@user)
+        end
     end
 
     private

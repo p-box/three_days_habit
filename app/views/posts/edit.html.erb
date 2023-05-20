@@ -3,11 +3,12 @@
 <%= form_with model: @post, local: true do |form| %>
 <%= render 'partial/errors_messages', model: form.object %>
 
-<p><%= form.label :body %><br>
-<%= form.text_area :body %>
+<p><%= form.label :bodhon %><br>
+<%= form.text_area :body, autofocus: true, :placeholder => "#{@post.body}" %>
 </p>
 
-<p><%= form.submit "作成する" %> 
+<p><%= form.submit  "更新する"%> 
+
 </p>
 
 <% end %>
