@@ -1,7 +1,9 @@
 
+
 <div class="field">
     <h1><%= current_user.name%>のページ</h1>
 </div>
+
 
  <div>
   フォロー数： <%= current_user.followings.count %>
@@ -29,4 +31,10 @@
 <div class="field">
     <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
 </div>
+<% @user.posts.each do |post| %>
 
+<div>
+    <p><%= post.body %></p>
+    <p><%= post.user_id %></p>
+</div>
+<% end %>

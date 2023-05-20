@@ -14,6 +14,8 @@ class User < ApplicationRecord
   has_many :followers, through: :reverse_of_relationships, source: :follower
   #一覧画面でuser.followersなどと記述するため, throughでスルーするテーブル, sourceで参照するカラムを指定
 
+  has_many :posts, dependent: :destroy
+
   # フォローした時の処理
   def follow(user_id)
     relationships.create(followed_id: user_id)
