@@ -40,10 +40,12 @@
         <%= link_to post_favorites_path(post.id), data:{ "turbo-method": :delete} do%>
             <span style="color:red";>♥</span>
         <% end %>
+        <p><%= post.favorited_count %></p>
     <% else %>
         <%= link_to post_favorites_path(post.id), data:{ "turbo-method": :create} do%>
             <span style="color:gray">♥</span>
         <% end %>
+         <p><%= post.favorited_count %></p>
     <% end %>
     <p><%= link_to  "編集", edit_post_path(post) %></p>  
     <p><%= button_to  "削除", post_path(post), { method: :delete, data: { turbo_confirm: "本当に削除しますか？"}} %></p> 

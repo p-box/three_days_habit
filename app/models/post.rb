@@ -8,4 +8,9 @@ class Post < ApplicationRecord
     def favorited?(user)
         favorites.where(user_id: user.id).exists?
     end
+
+    def favorited_count
+        favorites.count
+    end
+
 end
