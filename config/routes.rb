@@ -17,8 +17,8 @@ Rails.application.routes.draw do
 
   resources :posts
 
-  
-
-  
-  
+  resources :posts do
+    resource :fovarites, only: [:create, :destroy]
+  end
+ 
 end
