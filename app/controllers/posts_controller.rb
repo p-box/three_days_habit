@@ -1,6 +1,11 @@
 class PostsController < ApplicationController
     before_action :authenticate_user!
 
+    def index
+        @feeds = Post.where(user_id: [current_user, *current_user.following_ids ])
+
+    end
+
     def new
         @post = Post.new
     end
