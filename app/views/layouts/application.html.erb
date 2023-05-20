@@ -11,6 +11,11 @@
   </head>
 
   <body>
+    <% if flash[notice] %>
+        <div class="flash">
+            <%= flash[:notice] %>
+        </div>
+    <% end %>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
