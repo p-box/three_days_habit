@@ -1,0 +1,10 @@
+<%= form_with model: @post, local: true do |form| %>
+
+<p><%= form.label :body %><br>
+<%= form.text_area :body %>
+</p>
+
+<p><%= form.submit %> #送信ボタンを生成
+</p>
+
+<% end %>
