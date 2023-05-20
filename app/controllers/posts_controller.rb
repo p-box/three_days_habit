@@ -13,7 +13,7 @@ class PostsController < ApplicationController
             flash[:notice] = "投稿に成功しました"
             redirect_to user_path(@user)
         else
-            render :new
+            render :new, status: :unprocessable_entity
         end
     end
     

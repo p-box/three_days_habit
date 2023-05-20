@@ -1,9 +1,6 @@
-<% @post.errors.full_messages.each do |message| %>
- <div class="form-error">
-  <%= message %>
- </div>
-<% end %>
+
 <%= form_with model: @post, local: true do |form| %>
+<%= render 'partial/errors_messages', model: form.object %>
 
 <p><%= form.label :body %><br>
 <%= form.text_area :body %>
