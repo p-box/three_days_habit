@@ -33,10 +33,18 @@
 </div>
 <%= link_to "新規作成", new_post_path%>
 <% @user.posts.each do |post| %>
-
 <div>
     <p><%= post.body %></p>
     <p><%= post.user_id %></p>
+    <% if post.favorited?(current_user) %>
+        <%= link_to post_favorites_path(post.id), data:{ "turbo-method": :delete} do%>
+            <span style="color:red";>♥</span>
+        <% end %>
+    <% else %>
+        <%= link_to post_favorites_path(post.id), data:{ "turbo-method": :create} do%>
+            <span style="color:gray">♥</span>
+        <% end %>
+    <% end %>
     <p><%= link_to  "編集", edit_post_path(post) %></p>  
     <p><%= button_to  "削除", post_path(post), { method: :delete, data: { turbo_confirm: "本当に削除しますか？"}} %></p> 
 </div>
