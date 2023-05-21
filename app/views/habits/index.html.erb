@@ -8,9 +8,9 @@
     <div>
         <p><%= habit.name %></p>
     </div> 
-    <%# <div>
-        <p><%= habit.image %></p>
-    <%# </div> %> 
+    <div>
+        <p><%= image_tag "#{habit.habit_image}" %></p>
+    </div> 
     <% end %>
 <% else %>
     <div>

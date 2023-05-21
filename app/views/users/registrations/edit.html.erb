@@ -41,6 +41,11 @@
     <%= f.text_field :comment, autocomplete: "comment" %>
   </div>
 
+  <div class="field">
+    <%= f.label :image %><br />
+    <%= f.text_field :image, accept: 'image/jpg, image/jpeg, image/gif, iamge/png' %>
+  <div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

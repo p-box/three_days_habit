@@ -32,6 +32,6 @@ class HabitsController < ApplicationController
 
   private
   def habit_params
-    params.require(:habit).permit(:name)
+    params.require(:habit).permit(:name, :habit_image)
   end
 end
