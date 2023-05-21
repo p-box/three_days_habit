@@ -15,6 +15,7 @@ class User < ApplicationRecord
   #一覧画面でuser.followersなどと記述するため, throughでスルーするテーブル, sourceで参照するカラムを指定
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :habits, dependent: :destroy
 
   # フォローした時の処理
   def follow(user_id)
