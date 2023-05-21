@@ -20,5 +20,9 @@ Rails.application.routes.draw do
   resources :posts do
     resource :favorites, only: [:create, :destroy]
   end
+
+  resources :user do
+    resource :habits, only: [:index]
+  end
  
 end
