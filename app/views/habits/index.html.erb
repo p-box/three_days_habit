@@ -1,2 +1,19 @@
 <h1>Habits#index</h1>
-<p>Find me in app/views/habits/index.html.erb</p>
+<%= button_to "Start"%>
+<% if @habits.exists? %>
+    <%= @habits.each do |habit| %>
+    <%# <div>
+        <p><%#= habit.tag %></p>
+    <%# </div> %>
+    <div>
+        <p><%= habit.name %></p>
+    </div> 
+    <%# <div>
+        <p><%= habit.image %></p>
+    <%# </div> %> 
+    <% end %>
+<% else %>
+    <div>
+        <h2>まだ習慣を作成してません</h2>
+    </div>
+<% end %>
