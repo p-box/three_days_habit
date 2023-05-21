@@ -2,7 +2,8 @@ class PostsController < ApplicationController
     before_action :authenticate_user!
 
     def index
-        @feeds = Post.where(user_id: [current_user, *current_user.following_ids ])
+        @feeds = Post.where(user_id: [current_user,
+             *current_user.following_ids ]).order(created_at: :desc)
 
     end
 
