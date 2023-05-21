@@ -27,6 +27,9 @@
         <p>コメント</p></br>
         <%= current_user.comment%>
     </div>
+    <div>
+        <p><%= image_tag "#{current_user.user_image}" %></p>
+    </div> 
 </div>
 <div class="field">
     <%= button_to 'ログアウト', destroy_user_session_path, method: :delete %>
@@ -36,6 +39,9 @@
 <div>
     <p><%= post.body %></p>
     <p><%= post.user_id %></p>
+    <div>
+        <p><%= image_tag "#{post.post_image}" %></p>
+    </div> 
     <% if post.favorited?(current_user) %>
         <%= link_to post_favorites_path(post.id), data:{ "turbo-method": :delete} do%>
             <span style="color:red";>♥</span>
