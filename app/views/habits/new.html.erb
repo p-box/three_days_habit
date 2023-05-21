@@ -1,0 +1,14 @@
+<h1>Habits#new</h1>
+
+<%= form_with url: user_habits_path , model: @habit, local: true do |f| %>
+<%= render 'partial/errors_messages', model: f.object %>
+
+<div class="field">
+    <%= f.label :name %><br />
+    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+<div>
+
+<p><%= f.submit "作成する" %> 
+</p>
+
+<% end %>

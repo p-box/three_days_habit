@@ -1,7 +1,7 @@
 <h1>Habits#index</h1>
-<%= button_to "Start"%>
+<%= button_to "Start", new_user_habits_path(current_user), method: :get %>
 <% if @habits.exists? %>
-    <%= @habits.each do |habit| %>
+    <% @habits.each do |habit| %>
     <%# <div>
         <p><%#= habit.tag %></p>
     <%# </div> %>

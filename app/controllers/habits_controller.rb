@@ -6,7 +6,8 @@ class HabitsController < ApplicationController
   end
 
   def new
-    @habit = Habit.new
+    @user = current_user
+    @habit = @user.habits.new
   end
   
   def create
