@@ -1,5 +1,5 @@
 <h1>Habits#index</h1>
-<%= button_to "Start", new_user_habits_path(current_user), method: :get %>
+<%= button_to "Start", new_habit_path(current_user), method: :get %>
 <% if @habits.exists? %>
     <% @habits.each do |habit| %>
     <%# <div>
@@ -14,8 +14,13 @@
     <% else %>
         <image src="/assets/default.png", width='200'  >
     <% end %>
-      
-    </div> 
+    </div>
+    <div>
+        <%= link_to "編集", edit_habit_path(habit) %>
+    </div>
+    <div>
+        <%= button_to "削除", habit_path(habit),  { method: :delete, data: { turbo_confirm: "本当に削除しますか？"}} %>
+    </div>
     <% end %>
 <% else %>
     <div>

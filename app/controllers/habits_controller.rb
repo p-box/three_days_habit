@@ -2,7 +2,8 @@ class HabitsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @habits = Habit.all
+    @user = current_user
+    @habits = @user.habits.all
   end
 
   def new
@@ -22,12 +23,30 @@ class HabitsController < ApplicationController
   end
 
   def edit
+    @user = current_user
+    @habit = @user.habits.find(params[:id])
   end
   
-  def upadate
+  def update
+    @user = current_user
+    @habit = @user.habits.find(params[:id])
+    if @habit.update(habit_params)
+      flash[:notice] = "編集しました"
+      redirect_to habits_index_path
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
   
   def destroy
+    @user = current_user
+    @habit = @user.habits.find(params[:id])
+    if @habit.destroy
+      flash[:notice] = "削除しました"
+      redirect_to habits_index_path
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   private
