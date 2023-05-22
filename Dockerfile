@@ -1,6 +1,7 @@
 FROM ruby:3.1
 
-RUN apt-get update && apt-get install -y sudo less default-mysql-client
+RUN apt-get update && apt-get install -y sudo less default-mysql-client \
+imagemagick
 
 RUN mkdir /con-habit-app
 WORKDIR /con-habit-app

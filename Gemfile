@@ -51,6 +51,9 @@ gem 'rails-i18n', '~> 7.0', '>= 7.0.7'
 gem 'devise', '~> 4.9', '>= 4.9.2'
 gem 'devise-i18n', '~> 1.11'
 
+gem 'carrierwave'
+gem 'mini_magick'
+
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

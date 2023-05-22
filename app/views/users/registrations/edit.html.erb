@@ -41,6 +41,11 @@
     <%= f.text_field :comment, autocomplete: "comment" %>
   </div>
 
+  <div class="field">
+    <%= f.label :user_image %><br />
+    <%= f.file_field :user_image %>
+  <div>
+
   <div class="actions">
     <%= f.submit "Update" %>
   </div>

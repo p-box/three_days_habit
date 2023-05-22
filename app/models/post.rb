@@ -4,6 +4,8 @@ class Post < ApplicationRecord
 
     validates :body, presence: true, length: { maximum: 300 }
 
+    mount_uploader :post_image, ImageUploader
+
 
     def favorited?(user)
         favorites.where(user_id: user.id).exists?

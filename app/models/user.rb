@@ -17,6 +17,8 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :habits, dependent: :destroy
 
+  mount_uploader :user_image, ImageUploader
+
   # フォローした時の処理
   def follow(user_id)
     relationships.create(followed_id: user_id)

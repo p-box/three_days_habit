@@ -2,5 +2,10 @@
 <h2>Timeline</h2>
 
 <% @feeds.each do |post| %>
-<p><%= post.body %></p>
+<div class="field">
+    <%= post.body %>
+</div>
+<div class="field">
+    <%= image_tag post.post_image.url, width: '60'  if post.post_image.present? %>
+</div>
 <% end %>

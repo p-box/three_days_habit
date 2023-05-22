@@ -1,16 +1,21 @@
 <h1>Habits#index</h1>
-<%= button_to "Start"%>
+<%= button_to "Start", new_user_habits_path(current_user), method: :get %>
 <% if @habits.exists? %>
-    <%= @habits.each do |habit| %>
+    <% @habits.each do |habit| %>
     <%# <div>
         <p><%#= habit.tag %></p>
     <%# </div> %>
     <div>
         <p><%= habit.name %></p>
     </div> 
-    <%# <div>
-        <p><%= habit.image %></p>
-    <%# </div> %> 
+    <div>
+    <% if habit.habit_image.present? %>
+        <%= image_tag habit.habit_image.url, width: '200' %>
+    <% else %>
+        <image src="/assets/default.png", width='200'  >
+    <% end %>
+      
+    </div> 
     <% end %>
 <% else %>
     <div>
