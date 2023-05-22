@@ -1,6 +1,6 @@
 <h1>Habit#edit</h1>
 
-<%= form_with  model: @habit, local: true do |f| %>
+<%= form_with  url: habit_path, model: @habit, local: true do |f| %>
 <%= render 'partial/errors_messages', model: f.object %>
 
 <div class="field">

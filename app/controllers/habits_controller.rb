@@ -25,11 +25,13 @@ class HabitsController < ApplicationController
   def edit
     puts params
     puts "どれみ"
-    @habit = Habit.find(params)
+    @user = current_user
+    @habit = @user.habits.find(params[:id])
   end
   
-  def upadate
-    @habit = Habit.find(params)
+  def update
+    @user = current_user
+    @habit = @user.habits.find(params[:id])
     if @habit.update(habit_params)
       flash[:notice] = "編集しました"
       redirect_to habits_index_path
