@@ -1,8 +1,5 @@
 Rails.application.routes.draw do
-  get 'records/create'
-  get 'habits/index'
-  get 'relationships/followings'
-  get 'relationships/followers'
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'

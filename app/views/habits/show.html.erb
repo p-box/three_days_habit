@@ -1,4 +1,5 @@
 <h1>Habit#show</h1>
+
 <div>
     <div>
         <div class="habit-name-filed">
@@ -20,8 +21,15 @@
                 <h2>カレンダー</h2>
             </div>
             <div>
-                <%= month_calendar do |date| %>
-                    <%= date %>
+                <%= month_calendar events: @records do |date, records| %>
+                    <%= date.day %>
+
+                    <% records.each do |record| %>
+                        <div>
+                        <%= record.id %>
+                        <%= record.start_time %>
+                        </div>
+                    <% end %>
                 <% end %>
             </div>
         </div>
@@ -32,8 +40,9 @@
                     <h4>達成ボタン</h4>
                 </div>
                 <div>
-                    <%= form_with(model: @record, local: true) do |f| %>
-                        <%# <%= f.date_filed :start_time, value: Date.today%> 
+                    <%#= form_with url: habit_records_path(@habit), local: true do |f| %>
+                    <%= form_with url: habit_records_path(@habit), local: true do |f| %>
+                         <%= f.hidden_field :start_time, value: Date.today%> 
                         <%= f.submit %>
                     <% end %>
                 </div>
