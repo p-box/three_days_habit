@@ -24,8 +24,6 @@ class PostsController < ApplicationController
     end
     
     def edit 
-        puts params
-        puts "ドレミ"
         @post = Post.find(params[:id])
     end
 

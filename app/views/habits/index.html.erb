@@ -18,6 +18,9 @@
     <div>
         <%= link_to "編集", edit_habit_path(habit) %>
     </div>
+    <div>
+        <%= button_to "削除", habit_path(habit),  { method: :delete, data: { turbo_confirm: "本当に削除しますか？"}} %>
+    </div>
     <% end %>
 <% else %>
     <div>

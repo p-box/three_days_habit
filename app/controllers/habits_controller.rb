@@ -23,8 +23,6 @@ class HabitsController < ApplicationController
   end
 
   def edit
-    puts params
-    puts "どれみ"
     @user = current_user
     @habit = @user.habits.find(params[:id])
   end
@@ -41,6 +39,14 @@ class HabitsController < ApplicationController
   end
   
   def destroy
+    @user = current_user
+    @habit = @user.habits.find(params[:id])
+    if @habit.destroy
+      flash[:notice] = "削除しました"
+      redirect_to habits_index_path
+    else
+      render :index, status: :unprocessable_entity
+    end
   end
 
   private
