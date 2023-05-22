@@ -12,16 +12,14 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
     get 'followings' => 'relationships#followings', as: 'followings'
     get 'followers' => 'relationships#followers', as: 'followers'
-    resource :habits
   end
 
   get "search" => "searches#search"
 
-  resources :posts
-
   resources :posts do
     resource :favorites, only: [:create, :destroy]
   end
+  resources :habits
 
  
 end

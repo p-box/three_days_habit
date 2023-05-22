@@ -1,6 +1,6 @@
 <h1>Habit#edit</h1>
 
-<%= form_with url: user_habits_path , model: @habit, local: true do |f| %>
+<%= form_with  model: @habit, local: true do |f| %>
 <%= render 'partial/errors_messages', model: f.object %>
 
 <div class="field">
@@ -8,7 +8,7 @@
     <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
 <div>
 <div class="field">
-    <%# <%= f.label :habit_image %><br /> 
+    <%= f.label :habit_image, "画像" %><br /> 
     <%= f.file_field :habit_image, accept: 'image/png, image/jpeg, image/gif' %>
 <div>
 
