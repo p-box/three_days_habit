@@ -16,10 +16,19 @@
     </div>
     <div>
         <div>
-            <h2>カレンダー</h2>
+            <div>
+                <h2>カレンダー</h2>
+            </div>
+            <div>
+                <%= month_calendar do |date| %>
+                    <%= date %>
+                <% end %>
+            </div>
         </div>
+        
         <div class="button-space">
-            <div>達成ボタン</div>
+            <div>
+            達成ボタン</div>
             <div>一週間チャレンジ</div>
             <div>アイテム</div>
         </div>
