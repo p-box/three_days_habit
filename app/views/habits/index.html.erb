@@ -5,6 +5,7 @@
     <%# <div>
         <p><%#= habit.tag %></p>
     <%# </div> %>
+    <%= link_to habit_path(habit) do%>
     <div>
         <p><%= habit.name %></p>
     </div> 
@@ -15,6 +16,7 @@
         <image src="/assets/default.png", width='200'  >
     <% end %>
     </div>
+    <% end %>
     <div>
         <%= link_to "編集", edit_habit_path(habit) %>
     </div>
