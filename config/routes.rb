@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'records/create'
   get 'habits/index'
   get 'relationships/followings'
   get 'relationships/followers'
@@ -19,7 +20,9 @@ Rails.application.routes.draw do
   resources :posts do
     resource :favorites, only: [:create, :destroy]
   end
-  resources :habits
+  resources :habits do
+    resource :records, only: [:create]
+  end
 
  
 end

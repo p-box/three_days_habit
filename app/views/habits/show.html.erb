@@ -28,7 +28,16 @@
         
         <div class="button-space">
             <div>
-            達成ボタン</div>
+                <div>
+                    <h4>達成ボタン</h4>
+                </div>
+                <div>
+                    <%= form_with(model: @record, local: true) do |f| %>
+                        <%# <%= f.date_filed :start_time, value: Date.today%> 
+                        <%= f.submit %>
+                    <% end %>
+                </div>
+            </div>
             <div>一週間チャレンジ</div>
             <div>アイテム</div>
         </div>
