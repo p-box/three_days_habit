@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  get 'habits/index'
-  get 'relationships/followings'
-  get 'relationships/followers'
+  
   devise_for :users, controllers: {
     registrations: 'users/registrations',
     sessions: 'users/sessions'
@@ -19,7 +17,9 @@ Rails.application.routes.draw do
   resources :posts do
     resource :favorites, only: [:create, :destroy]
   end
-  resources :habits
+  resources :habits do
+    resource :records, only: [:create]
+  end
 
  
 end

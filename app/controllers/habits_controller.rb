@@ -8,6 +8,7 @@ class HabitsController < ApplicationController
   
   def show
     @habit = @user.habits.find(params[:id])
+    @records = @habit.records
   end
 
   def new

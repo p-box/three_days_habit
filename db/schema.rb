@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_21_125632) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_22_052944) do
   create_table "favorites", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -36,6 +36,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_21_125632) do
     t.datetime "updated_at", null: false
     t.string "post_image"
     t.index ["user_id"], name: "index_posts_on_user_id"
+  end
+
+  create_table "records", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "start_time"
+    t.bigint "habit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["habit_id"], name: "index_records_on_habit_id"
   end
 
   create_table "relationships", charset: "utf8mb4", force: :cascade do |t|
@@ -64,4 +72,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_21_125632) do
   add_foreign_key "favorites", "users"
   add_foreign_key "habits", "users"
   add_foreign_key "posts", "users"
+  add_foreign_key "records", "habits"
 end
