@@ -1,19 +1,19 @@
 <h1>post-edit</h1>
 
-<%= form_with model: @post, local: true do |form| %>
-<%= render 'partial/errors_messages', model: form.object %>
+<%= form_with model: @post, local: true do |f| %>
+<%= render 'partial/errors_messages', model: f.object %>
 
 <div class="field">
-<%= form.label :body %><br>
-<%= form.text_area :body, autofocus: true, :placeholder => "#{@post.body}" %>
+<%= f.label :body %><br>
+<%= f.text_area :body, autofocus: true, :placeholder => "#{@post.body}" %>
 </div>
 
 <div class="field">
-    <%= f.label :post_image, '画像'%><br />
+    <%= f.label :post_image, '画像' %><br /> 
     <%= f.file_field  :post_image %>
 <div>
 
-<p><%= form.submit  "更新する"%> 
+<p><%= f.submit  "更新する"%> 
 
 </p>
 

@@ -22,6 +22,9 @@ class HabitsController < ApplicationController
   end
 
   def edit
+    puts params
+    puts "どれみ"
+    @habit = Habit.find(1)
   end
   
   def upadate
