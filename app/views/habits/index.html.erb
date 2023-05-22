@@ -9,7 +9,12 @@
         <p><%= habit.name %></p>
     </div> 
     <div>
-        <p><%= image_tag "#{habit.habit_image}" %></p>
+    <% if habit.habit_image.present? %>
+        <%= image_tag habit.habit_image.url, width: '200' %>
+    <% else %>
+        <image src="/assets/default.png", width='200'  >
+    <% end %>
+      
     </div> 
     <% end %>
 <% else %>

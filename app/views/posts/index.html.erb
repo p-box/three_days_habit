@@ -6,6 +6,6 @@
     <%= post.body %>
 </div>
 <div class="field">
-    <%= image_tag "#{post.post_image}"%>
+    <%= image_tag post.post_image.url, width: '60'  if post.post_image.present? %>
 </div>
 <% end %>

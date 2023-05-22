@@ -28,7 +28,12 @@
         <%= current_user.comment%>
     </div>
     <div>
-        <p><%= image_tag "#{current_user.user_image}" %></p>
+    <% if current_user.user_image.present? %>
+        <%= image_tag current_user.user_image.url, width: '60'%>
+    <% else %>
+        <image src="/assets/default.png", width='200'  >
+    <% end %>
+        <p></p>
     </div> 
 </div>
 <div class="field">
@@ -40,7 +45,7 @@
     <p><%= post.body %></p>
     <p><%= post.user_id %></p>
     <div>
-        <p><%= image_tag "#{post.post_image}" %></p>
+        <p><%= image_tag post.post_image.url, width: '100'  if post.post_image.present?%></p>
     </div> 
     <% if post.favorited?(current_user) %>
         <%= link_to post_favorites_path(post.id), data:{ "turbo-method": :delete} do%>
