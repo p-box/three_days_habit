@@ -1,18 +1,20 @@
 class HabitsController < ApplicationController
   before_action :authenticate_user!
+  before_action :set_user
 
   def index
-    @user = current_user
     @habits = @user.habits.all
+  end
+  
+  def show
+    @habit = @user.habits.find(params[:id])
   end
 
   def new
-    @user = current_user
     @habit = @user.habits.new
   end
   
   def create
-    @user = current_user
     @habit = @user.habits.new(habit_params)
     if @habit.save
       flash[:notice] = "作成しました"
@@ -23,12 +25,10 @@ class HabitsController < ApplicationController
   end
 
   def edit
-    @user = current_user
     @habit = @user.habits.find(params[:id])
   end
   
   def update
-    @user = current_user
     @habit = @user.habits.find(params[:id])
     if @habit.update(habit_params)
       flash[:notice] = "編集しました"
@@ -52,5 +52,9 @@ class HabitsController < ApplicationController
   private
   def habit_params
     params.require(:habit).permit(:name, :habit_image)
+  end
+
+  def set_user
+    @user = current_user
   end
 end
