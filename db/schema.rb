@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_22_052944) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_28_002211) do
   create_table "favorites", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_22_052944) do
     t.bigint "habit_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "continuation"
     t.index ["habit_id"], name: "index_records_on_habit_id"
   end
 
