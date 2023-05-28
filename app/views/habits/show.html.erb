@@ -10,6 +10,7 @@
         </div>
         <div>
             <p>継続中...</p>
+            <%= @habit.records.last.continuation if @habit.records.last.continuation.present? %>
         </div>
         <div>
             <p>次の目標..</p>
@@ -21,7 +22,7 @@
                 <h2>カレンダー</h2>
             </div>
             <div>
-                <%= month_calendar events: @records do |date, records| %>
+                <%= month_calendar events: @habit.records do |date, records| %>
                     <%= date.day %>
 
                     <% records.each do |record| %>
@@ -42,7 +43,8 @@
                 <div>
                     <%#= form_with url: habit_records_path(@habit), local: true do |f| %>
                     <%= form_with url: habit_records_path(@habit), local: true do |f| %>
-                         <%= f.hidden_field :start_time, value: Date.today%> 
+                         <%= f.text_field :start_time, value: Date.today%> 
+                         <%= f.hidden_field :continuation, value: 1 %>
                         <%= f.submit %>
                     <% end %>
                 </div>
