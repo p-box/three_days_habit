@@ -6,12 +6,12 @@ class SearchesController < ApplicationController
         @word = params[:word]
         @condition = search_condition_lang_jp(params[:condition])
 
-        # if @range == "User"
+        if @range == "User"
             @users = User.looks(params[:condition], params[:word])
             render "/searches/search_result"
-        # else
-        #     @posts = Post.Looks(params[:condition], params[:word])
-        # end
+        else
+            @posts = Post.Looks(params[:condition], params[:word])
+        end
     end
 
     private

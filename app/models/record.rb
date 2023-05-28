@@ -5,15 +5,21 @@ class Record < ApplicationRecord
     #バリデーション
     validates :start_time, uniqueness: true
 
-    def is_it_continuous(latest_record, current_record )
-        # 継続できているか判断
-        # latest_record == 一番最後に保存されたレコード
-        # current_record == 保存しようとしているレコード
-        if latest_record.start_time == current_record.start_time.yesterday
+    
+    
+    
+    def is_it_continuous(habit)
+        yesterday = self.start_time.yesterday
+        latest_record = habit.records.find_by(start_time: yesterday)
+        unless latest_record.nil? 
             # 継続日数を更新
-            current_record.continuation = latest_record.continuation + 1
-        else
-        # アイテムで補填が聞く場合のメソッド
+            self.continuation = latest_record.continuation + 1
+        end
+    end
+
+
+end
+# アイテムで補填が聞く場合のメソッド
             # diff = (latest_record.start_time - current_record.start_time) / 86400
             # holiday = diff.to_i
             # item = record.items
@@ -36,9 +42,3 @@ class Record < ApplicationRecord
             # # アイテムでも補填ができず継続日数をリセット
             #     current_record.continuation = 1
             # end
-            current_record.continuation = 1
-        end
-    end
-
-
-end
