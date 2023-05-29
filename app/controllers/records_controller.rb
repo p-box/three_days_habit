@@ -9,8 +9,7 @@ class RecordsController < ApplicationController
     if current_record.save
       redirect_to request.referer
     else
-      render habit_path(@habit)
-      # , status: :unprocessable_entity
+      render "habits/show", status: :unprocessable_entity
     end
   end
   private

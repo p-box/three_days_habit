@@ -20,25 +20,26 @@ class Record < ApplicationRecord
         else
             # 何日休んでいたか求める
             diff = (self.start_time - latest.start_time ) / 86400
-            puts diff
             # 日の差分は当日も含まれるのその分引く
             holiday = diff.to_i - 1
-            puts holiday
             remaining = habit.item - holiday
-            puts remaining
             # 休日を所持しているアイテム数で補填できるか判断
             if 0 <= remaining
                 # アイテムを消費する
-                habit.update(item: remaining)
                 # 休んだ日のレコードを作成する
-                (1..remaining).each do |i|
-                    no_record_day = habit.records.create(
+                (1..holiday).each do |i|
+                    no_record_day = habit.records.new(
                         start_time: latest.start_time + i.day,
                         continuation: latest.continuation + i
                     )
+                    no_record_day.save
                 end
             end
         end
     end
 
 end
+# 問題点
+# レコードの保存される順番が前後しているから日付のカウントが誤作動している
+# アイテムの消費をこのメソッド内で更新すると、curennt_recordが保存されてしまう
+# 同じ日を保存すると、最新のレコードの場所が同じになりおかしくなる
