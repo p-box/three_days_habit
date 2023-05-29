@@ -18,7 +18,7 @@ class HabitsController < ApplicationController
     @habit = @user.habits.new(habit_params)
     if @habit.save
       flash[:notice] = "作成しました"
-      redirect_to habits_index_path
+      redirect_to habit_path(@habit)
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,7 +32,7 @@ class HabitsController < ApplicationController
     @habit = @user.habits.find(params[:id])
     if @habit.update(habit_params)
       flash[:notice] = "編集しました"
-      redirect_to habits_index_path
+      redirect_to habit_path(@habit)
     else
       render :edit, status: :unprocessable_entity
     end
@@ -43,7 +43,7 @@ class HabitsController < ApplicationController
     @habit = @user.habits.find(params[:id])
     if @habit.destroy
       flash[:notice] = "削除しました"
-      redirect_to habits_index_path
+      redirect_to habit_path(@habit)
     else
       render :index, status: :unprocessable_entity
     end
