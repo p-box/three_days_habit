@@ -1,0 +1,5 @@
+class AddItemToHabits < ActiveRecord::Migration[7.0]
+  def change
+    add_column :habits, :item, :integer
+  end
+end
