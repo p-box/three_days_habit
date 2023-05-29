@@ -6,11 +6,19 @@
             <h3><%= @habit.name%></h3>
         </div>
         <div>
-            <%= image_tag @habit.habit_image.url, width:"200" %>
+        <% if @habit.habit_image.present? %>
+            <%= image_tag @habit.habit_image.url, width: '200' %>
+        <% else %>
+            <%=  image_tag "/assets/default.png", width: '200'  %>
+        <% end %>
         </div>
         <div>
             <p>継続中...</p>
-            <%= @habit.records.last.continuation if @habit.records.last.continuation.present? %>
+            <% if @habit.records.last.present? %>
+                <%= @habit.records.last.continuation %> <p>日</p>
+            <% else %>
+                <p>0 日</p>
+            <% end %>
         </div>
         <div>
             <p>次の目標..</p>
@@ -51,6 +59,9 @@
             </div>
             <div>一週間チャレンジ</div>
             <div>アイテム</div>
+            <div>
+                <%= @habit.item %>
+            </div>
         </div>
     </div>
 </div>

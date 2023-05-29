@@ -11,6 +11,7 @@
     <%= f.label :habit_image %><br />
     <%= f.file_field :habit_image, accept: 'image/png, image/jpeg, image/gif' %>
 <div>
+<%= f.hidden_field :item, value: 4 %>
 
 <p><%= f.submit "作成する" %> 
 </p>
