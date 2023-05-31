@@ -8,5 +8,6 @@ class Habit < ApplicationRecord
 
     mount_uploader :habit_image, ImageUploader
 
+    
 
 end

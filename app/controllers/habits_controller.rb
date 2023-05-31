@@ -37,6 +37,16 @@ class HabitsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def achieve
+    @habit = @user.habits.find(params[:id])
+    if @habit.update(achieve_params)
+      flash[:notice] = "記録できました"
+      redirect_to habit_path(@habit)
+    else
+      render :show, status: :unprocessable_entity
+    end
+  end
   
   def destroy
     @user = current_user
