@@ -1,13 +1,14 @@
 class HabitsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_user
+  before_action :set_habit, only: %w[show edit update achieve destroy]
 
   def index
     @habits = @user.habits.all
   end
   
   def show
-    @habit = @user.habits.find(params[:id])
+    @record = Record.new
   end
 
   def new
@@ -25,11 +26,9 @@ class HabitsController < ApplicationController
   end
 
   def edit
-    @habit = @user.habits.find(params[:id])
   end
   
   def update
-    @habit = @user.habits.find(params[:id])
     if @habit.update(habit_params)
       flash[:notice] = "編集しました"
       redirect_to habit_path(@habit)
@@ -37,10 +36,19 @@ class HabitsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
+  def achieve
+    record_date = Record.is_it_continuou(@habit,achieve_params)
+    item_stock = record_date.include?("true") ? record_date[0] : @habit.item
+    if @habit.update(item: item_stock)
+      flash[:notice] = "記録できました"
+      redirect_to habit_path(@habit)
+    else
+      render :show, status: :unprocessable_entity
+    end
+  end
   
   def destroy
-    @user = current_user
-    @habit = @user.habits.find(params[:id])
     if @habit.destroy
       flash[:notice] = "削除しました"
       redirect_to habit_path(@habit)
@@ -54,7 +62,17 @@ class HabitsController < ApplicationController
     params.require(:habit).permit(:name, :habit_image, :item)
   end
 
+  def achieve_params
+    params.require(:record).permit(:start_time, :continuation)
+  end
+
   def set_user
     @user = current_user
   end
+
+  def set_habit
+    @habit = @user.habits.find(params[:id])
+  end
+
+
 end

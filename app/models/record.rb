@@ -1,44 +1,40 @@
 class Record < ApplicationRecord
-    #アソシエーション
+    # アソシエーション
     belongs_to :habit
 
-    #バリデーション
-    validates :start_time, uniqueness: true
+    # validates
+    validates :start_time, presence: true
+    validates :continuation, presence: true
 
-    
-    
-    
-    def is_it_continuous(habit)
-        yesterday = self.start_time.yesterday
-        latest_record = habit.records.find_by(start_time: yesterday)
-        unless latest_record.nil? 
-            # 継続日数を更新
-            self.continuation = latest_record.continuation + 1
+    def self.is_it_continuou(habit,params)
+        latest = habit.records.last
+        current = habit.records.new(params)
+        # 最後のレコードと作成中のレコードをもらい、
+        # 二つの差分により休んだ日数を計算
+        diff = (current.start_time - latest.start_time) / 86400
+        holiday = diff.to_i - 1
+        # アイテムの消費数を計算
+        item_stock = []
+        item_stock << habit.item - holiday
+        if latest.start_time == current.start_time.yesterday
+            current.continuation = latest.continuation + 1
+        elsif  0 <= item_stock[0]
+        # アイテムの消費数より補填できるか判断
+            current.continuation = latest.continuation + holiday + 1
+            (1..holiday).each do |i|
+                habit.records.create!(
+                  start_time: latest.start_time + i.day,
+                  continuation: latest.continuation + i
+                )
+            end
+            # 補填できた場合にhabitのitemを変更したい。
+            # その判断材料を追加
+            item_stock << "true"
         end
+        current.save
+        item_stock
     end
 
 
-end
-# アイテムで補填が聞く場合のメソッド
-            # diff = (latest_record.start_time - current_record.start_time) / 86400
-            # holiday = diff.to_i
-            # item = record.items
-            # if holiday <= my_item
-            # # 休日をアイテムで補填できる場合
-            # # アイテムを消費する処理
-            # item.update(
 
-            # )
-            # # 補填するレコードの作成
-            #     holiday.times do |i|
-            #     compensation = @habit.records.new(
-            #         start_time: latest_record.start_time + i.day
-            #         continuation: latest_record.continuation + i
-            #     )
-            #     conpensation.save
-            #     end
-                #current_record.continuation = latest_record.continuation + holiday
-            # else
-            # # アイテムでも補填ができず継続日数をリセット
-            #     current_record.continuation = 1
-            # end
+end
