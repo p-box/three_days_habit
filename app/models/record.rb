@@ -1,6 +1,10 @@
 class Record < ApplicationRecord
-    #アソシエーション
+    # アソシエーション
     belongs_to :habit
+
+    # validates
+    validates :start_time, presence: true
+    validates :continuation, presence: true
 
     def self.is_it_continuou(habit,params)
         latest = habit.records.last
