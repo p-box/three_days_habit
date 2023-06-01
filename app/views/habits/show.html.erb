@@ -49,11 +49,19 @@
                     <h4>達成ボタン</h4>
                 </div>
                 <div>
-                    <%= form_with url: habit_records_path(@habit), local: true do |f| %>
-                         <%= f.text_field :start_time, value: Date.today%> 
-                         <%= f.hidden_field :continuation, value: 1 %>
-                        <%= f.submit %>
+                <% if @habit.records.present?%>
+                    <%= form_with(model: @record, url: achieve_habit_path(@habit),method: :patch, local: true) do |f| %>
+                      <%= f.text_field :start_time, value: Date.today%> 
+                      <%= f.hidden_field :continuation, value: 1 %>
+                      <%= f.submit %>
                     <% end %>
+                <% else %>
+                    <%= form_with(model: @record, url: habit_records_path(@habit),local: true) do |f| %>
+                      <%= f.text_field :start_time, value: Date.today%> 
+                      <%= f.hidden_field :continuation, value: 1 %>
+                      <%= f.submit %>
+                    <% end %>
+                <% end %>
                 </div>
             </div>
             <div>一週間チャレンジ</div>
