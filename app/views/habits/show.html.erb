@@ -47,27 +47,31 @@
                 <h2>一週間チャレンジ</h2>
             </div>
             <div>
-                <% if @habit.challenges.present? && %>
+                <% if @habit.challenges.present? %>
+                    <% if @habit.challenges.last.start_time + 1.day < Time.current.beginning_of_day %>
+                        <div>
+                            <p>チャレンジ失敗...</p>
+                        </div>
+                    <% end %>
                     <div style="display: flex;">
                         <% @week_challenges.each_with_index do |challenge,index| %> 
                     
                             <% if challenge.present? %>
-                        <%# 色なしボックス＋日にち %>
-                            <div style="background-color:orange; margin: 10px;">
-                                <%= challenge.start_time.day %>
-                            </div>
-                            <% else %>
-                            <div style=" margin: 10px;"> 
-                                <%= (@habit.challenges.first.start_time + index.day).day %>
-                            </div>
+                                <%# 色なしボックス＋日にち %>
+                                <div style="background-color:orange; margin: 10px;">
+                                    <%= challenge.start_time.day %>
+                                </div>
+                                <% else %>
+                                <div style=" margin: 10px;"> 
+                                    <%= (@habit.challenges.first.start_time + index.day).day %>
+                                </div>
                             <% end %> 
                         <% end %>
                     </div>
-                  
                 <% end %>
             </div>
         </div>
-        
+
         <div class="button-space">
             <div>
                 <div>
@@ -103,10 +107,10 @@
                       <%# <%= f.hidden_field :continuation, value: 1 %> 
                       <%# <%= f.submit %> 
                     <%# <% end %>
-                    <%= button_to "削除", habit_challenges_path(@habit),  { method: :delete, data: { turbo_confirm: "本当に削除しますか？"}} %>
+                    <%= button_to "現在の挑戦を削除する", habit_challenges_path(@habit),  { method: :delete, data: { turbo_confirm: "本当に削除しますか？"}} %>
                 <% else %>
                     <%= form_with(model: @record, url: habit_challenges_path(@habit),local: true) do |f| %>
-                      <%= f.hidden_field :start_time, value: Date.today%> 
+                      <%= f.text_field :start_time, value: Date.today%> 
                       <%= f.hidden_field :continuation, value: 1 %>
                       <%= f.submit "1週間チャレンジ"%>
                     <% end %>
