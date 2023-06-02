@@ -74,6 +74,11 @@
                     <h4>達成ボタン</h4>
                 </div>
                 <div>
+                <%if @habit.records.exists?(start_time: Time.current.beginning_of_day) %>
+                    <div>
+                    <p>達成</p>
+                    </div>
+                <% else %>
                     <% if @habit.records.present?%>
                         <%= form_with(model: @record, url: achieve_habit_path(@habit),method: :patch, local: true) do |f| %>
                         <%= f.text_field :start_time, value: Date.today%> 
@@ -86,7 +91,8 @@
                         <%= f.hidden_field :continuation, value: 1 %>
                         <%= f.submit %>
                         <% end %>
-                    <% end %>
+                    <% end %>        
+                <% end %>
                 </div>
             </div>
             <div>一週間チャレンジ</div>
