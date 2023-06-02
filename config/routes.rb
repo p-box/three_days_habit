@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     member do
       patch 'achieve'
     end
+    get "challenge" => "challenges#index"
     resource :challenges, only: %w(create destroy)
   end
 

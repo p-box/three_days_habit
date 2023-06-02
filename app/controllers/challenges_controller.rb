@@ -2,6 +2,10 @@ class ChallengesController < ApplicationController
     before_action :authenticate_user!
     before_action :set_habit
 
+    def index
+        @habit = Habit.find(params[:habit_id])
+    end
+
     def create
         challenge = @habit.challenges.new(challenge_params)
         if challenge.save
