@@ -23,6 +23,7 @@ Rails.application.routes.draw do
     member do
       patch 'achieve'
     end
+    resource :challenges, only: %w(create destroy)
   end
 
  
