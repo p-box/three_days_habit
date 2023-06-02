@@ -76,7 +76,7 @@
                 <div>
                     <% if @habit.records.present?%>
                         <%= form_with(model: @record, url: achieve_habit_path(@habit),method: :patch, local: true) do |f| %>
-                        <%= f.hidden_field :start_time, value: Date.today%> 
+                        <%= f.text_field :start_time, value: Date.today%> 
                         <%= f.hidden_field :continuation, value: 1 %>
                         <%= f.submit %>
                         <% end %>
@@ -107,7 +107,7 @@
                 <% end %>
             <div>アイテム</div>
             <div>
-                <%= @habit.item %>
+                <%= @habit.item %>/4
             </div>
         </div>
     </div>

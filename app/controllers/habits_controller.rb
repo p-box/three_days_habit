@@ -43,10 +43,15 @@ class HabitsController < ApplicationController
   end
 
   def achieve
-    item_stock = record_and_challenge_achieve_program(habit, record_params)
+    item_stock = record_and_challenge_achieve_program
     if @habit.update(item: item_stock)
       flash[:notice] = "記録できました"
-      redirect_to habit_path(@habit)
+      if @habit.challenges.present? && @habit.challenges.last.continuation == 7
+        @habit.challenges.destroy_all
+        redirect_to habit_challenge_path(@habit)
+      else
+        redirect_to habit_path(@habit)
+      end
     else
       render :show, status: :unprocessable_entity
     end
@@ -78,11 +83,11 @@ class HabitsController < ApplicationController
     @habit = @user.habits.find(params[:id])
   end
 
-  def record_and_challenge_achieve_program(habit,params)
-    record_date = Record.is_it_continuou(@habit, record_params)
+  def record_and_challenge_achieve_program
+    record_date = Record.is_it_continuou(@habit, achieve_params)
     item_stock = record_date.include?("continue") ? record_date[0] : @habit.item
-    challenge_result = Challenge.progress_of_the_challenge(@habit, record_params) if @habit.challenges.present?
-    challenge_result.include?("achieve") ? get_item(item_stock) : item_stock
+    challenge_result = Challenge.progress_of_the_challenge(@habit, achieve_params) if @habit.challenges.present?
+    challenge_result.present? && challenge_result.include?("achieve") ? get_item(item_stock) : item_stock
   end
 
   def get_item(item_stock)
