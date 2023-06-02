@@ -3,9 +3,9 @@ class ChallengesController < ApplicationController
     before_action :set_habit
 
     def create
-        challenge = habit.challenges.new(challenge_params)
+        challenge = @habit.challenges.new(challenge_params)
         if challenge.save
-            notice[:flash] = "挑戦を開始しました"
+            flash[:notice] = "挑戦を開始しました"
             redirect_to request.referer
         else
             render "habits/show", status: :unprocessable_entity
@@ -13,11 +13,11 @@ class ChallengesController < ApplicationController
     end
 
     def destroy
-       challenge = habit.challenges.find(params[:id])
-       if challenge.destroy
+       challenge = @habit.challenges.all
+       if challenge.destroy_all
         # noticeは変更が必要
-        notice[:flash] = "挑戦を開始しました"
-        redirect_to habit_path(habit)
+        flash[:notice] = "挑戦を開始しました"
+        redirect_to habit_path(@habit)
        else
         render "habits/show", status: :unprocessable_entity
        end
@@ -26,11 +26,11 @@ class ChallengesController < ApplicationController
     private
 
     def challenge_params
-        params.require(:challenge).permit(:start_time,:continuation)
+        params.require(:record).permit(:start_time, :continuation)
     end
 
     def set_habit
-        habit = Habit.find(prams[:id])
+        @habit = Habit.find(params[:habit_id])
     end
         
 end

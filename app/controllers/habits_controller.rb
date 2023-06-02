@@ -9,6 +9,11 @@ class HabitsController < ApplicationController
   
   def show
     @record = Record.new
+    challenges = @habit.challenges
+    @week_challenges = Array.new(7)
+    challenges.each_with_index do |cha, i|
+      @week_challenges[i] = cha
+    end
   end
 
   def new
