@@ -38,8 +38,7 @@ class HabitsController < ApplicationController
   end
 
   def achieve
-    record_date = Record.is_it_continuou(@habit,achieve_params)
-    item_stock = record_date.include?("true") ? record_date[0] : @habit.item
+    item_stock = record_and_challenge_achieve_program(habit, record_params)
     if @habit.update(item: item_stock)
       flash[:notice] = "記録できました"
       redirect_to habit_path(@habit)
@@ -74,5 +73,38 @@ class HabitsController < ApplicationController
     @habit = @user.habits.find(params[:id])
   end
 
+  def record_and_challenge_achieve_program(habit,params)
+    record_date = Record.is_it_continuou(@habit, record_params)
+    item_stock = record_date.include?("continue") ? record_date[0] : @habit.item
+    challenge_result = Challenge.progress_of_the_challenge(@habit, record_params) if @habit.challenges.present?
+    challenge_result.include?("achieve") ? get_item(item_stock) : item_stock
+  end
+
+  def get_item(item_stock)
+    item_stock += 2
+    item_stock = 4 if 4 < item_stock 
+  end
+
 
 end
+
+# action challenge_button push
+# カレンダーを埋めるために各日付に基づいたレコードが必要
+# レコードに必要なデータを受け取る処理
+# レコードを保存する処理
+
+# 継続中のレコード作成の処理
+# レコードが継続しているか判断する処理
+## レコードが連続かつ規定数そろった場合の処理
+### レコード達成の通知とアイテムの補充
+# レコードが途中で途切れた場合の処理
+## 該当レコードの削除
+
+
+# 1週間のカレンダーはビューで条件分岐によって表示、非表示
+
+# habits/show
+# <% if @habit.challenges.present? && @habit.challenges.last.start_time == Time.current.yesterday.begining_of_day %>
+#   一週間のカレンダーの表示
+# <% end %>
+# end

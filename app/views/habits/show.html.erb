@@ -42,6 +42,32 @@
                 <% end %>
             </div>
         </div>
+        <div>
+            <div>
+                <h2>一週間チャレンジ</h2>
+            </div>
+            <div>
+                <% if @habit.challenges.present? && %>
+                <div></div>
+                <div>
+                <% challenges.each_with_index do |challenge,index| %>
+                  <div>
+                  <% if challenge.nil?%>
+                  <%# 色なしボックス＋日にち %>
+                  <div>
+                    <%= @habit.challenges.first.start_time + index.day%>
+                  </div>
+                  <% else %>
+                  <div color="orange", width="60", hight="60">
+                    <%= challenge.start_time %>
+                  </div>
+                  </div>
+                <% end %>
+                </div>
+                  
+                <% end %>
+            </div>
+        </div>
         
         <div class="button-space">
             <div>

@@ -22,14 +22,14 @@ class Record < ApplicationRecord
         # アイテムの消費数より補填できるか判断
             current.continuation = latest.continuation + holiday + 1
             (1..holiday).each do |i|
-                habit.records.create!(
+                habit.records.create(
                   start_time: latest.start_time + i.day,
                   continuation: latest.continuation + i
                 )
             end
             # 補填できた場合にhabitのitemを変更したい。
             # その判断材料を追加
-            item_stock << "true"
+            item_stock << "continue"
         end
         current.save
         item_stock

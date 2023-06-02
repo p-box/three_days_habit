@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_29_035143) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_01_052156) do
+  create_table "challenges", charset: "utf8mb4", force: :cascade do |t|
+    t.datetime "start_time"
+    t.integer "continuation"
+    t.bigint "habit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["habit_id"], name: "index_challenges_on_habit_id"
+  end
+
   create_table "favorites", charset: "utf8mb4", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "post_id", null: false
@@ -70,6 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_29_035143) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "challenges", "habits"
   add_foreign_key "favorites", "posts"
   add_foreign_key "favorites", "users"
   add_foreign_key "habits", "users"
