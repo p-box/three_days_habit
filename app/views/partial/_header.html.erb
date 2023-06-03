@@ -1,0 +1,17 @@
+
+<header class="ui large top fixed menu">
+		<div >
+			<%= image_tag 'header-title.png', class: "ui medium image"%>
+		</div>
+		<% if  user_signed_in? %>
+		<%# loginしてたらハンバーガーメニュー %>
+		<% else %>
+			
+		<% end %>
+		<div class="right menu">
+				<div class="item">
+					<%= link_to 'Login', new_user_session_path, class: "ui secondary button" %> 
+				</div>
+			</div>
+	</div>
+</header>

@@ -12,13 +12,28 @@
   </head>
 
   <body>
-    <% if flash[notice] %>
-        <div class="flash">
-            <%= flash[:notice] %>
-        </div>
-    <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container">
+      <%# header %>
+      <%= render partial: 'partial/header' %>
+      
+      <div></div>
+      <% if flash[notice] %>
+          <div class="flash">
+              <%= flash[:notice] %>
+          </div>
+      <% end %>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+
+
+      <%# footer %>
+      <%= render partial: 'partial/footer'%>
+      
+      </div>
+
+    
+  
   </body>
 </html>
+ 

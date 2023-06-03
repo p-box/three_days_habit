@@ -53,7 +53,12 @@ gem 'devise-i18n', '~> 1.11'
 
 gem 'carrierwave'
 gem 'mini_magick'
-gem 'simple_calendar', '~> 2.4', '>= 2.4.3' 
+gem 'simple_calendar', '~> 2.4', '>= 2.4.3'
+
+# semantic 導入
+gem 'semantic-ui-sass'
+gem 'jquery-rails'
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
