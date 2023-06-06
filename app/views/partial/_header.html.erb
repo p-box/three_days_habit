@@ -1,0 +1,31 @@
+<%# hamburger-menu%>
+<% if user_signed_in? %>
+<div class="ui right sidebar inverted vertical menu">
+    <%= link_to 'Profile', user_path(current_user), class: "item"%>
+		<%= link_to 'Search', search_path, class: "item"%>
+		<%= link_to 'Post', posts_path, class: "item"%>
+		<%= link_to 'Habit', habits_path, class: "item"%>
+		<%= link_to 'Logout', destroy_user_session_path, class: "item"%>
+</div>
+<% end %>
+
+
+<%# main-menu %>
+<div class="ui top fixed menu" id="header">
+	<%= link_to root_path, class: "title-area ui medium image" do %>
+		<%= image_tag 'header-title.png', class: "pc-title-image"%>
+		<%= image_tag 'sp-header-title.png', class: "sp-title-image"%>
+	<% end %>
+	<% if user_signed_in? %>
+		<div class="right menu">
+					<div id="js-sidebar" class=""><i class="icon large black content"></i></div>
+		</div>
+	<% else %>
+		<div class="right menu">
+			<%= link_to 'Login', new_user_session_path, class: "ui secondary button"%>
+		</div>
+	<% end %>
+
+</div>
+
+

@@ -10,7 +10,7 @@ class SearchesController < ApplicationController
             @users = User.looks(params[:condition], params[:word])
             render "/searches/search_result"
         else
-            @posts = Post.Looks(params[:condition], params[:word])
+            @posts = Post.looks(params[:condition], params[:word])
         end
     end
 
