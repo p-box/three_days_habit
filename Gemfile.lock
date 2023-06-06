@@ -272,6 +272,8 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    semantic-ui-sass (2.4.4.0)
+      sassc
     simple_calendar (2.4.3)
       rails (>= 3.0)
     solargraph (0.49.0)
@@ -358,6 +360,7 @@ DEPENDENCIES
   rubocop-rails
   sassc-rails
   selenium-webdriver
+  semantic-ui-sass
   simple_calendar (~> 2.4, >= 2.4.3)
   solargraph
   spring-commands-rspec

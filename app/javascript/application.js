@@ -2,3 +2,13 @@
 
 import "@hotwired/turbo-rails"
 import "controllers"
+import "jquery"
+import "semantic-ui"
+
+
+$(document).on('turbo:load', function () {
+    $('.ui.dropdown').dropdown();
+		$('.ui.accordion').accordion();
+
+})
+
