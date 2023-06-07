@@ -20,6 +20,12 @@
 
  .pusher {
 	padding-top:80px;
-	height: 100%;
+	padding-bottom: 120px;
+	min-height: 100vh;
+	box-sizing: border-box;
+
+
+
 	position: relative;
+
  }
