@@ -14,5 +14,6 @@ class Post < ApplicationRecord
     def favorited_count
         favorites.count
     end
+    
 
 end

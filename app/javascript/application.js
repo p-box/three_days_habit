@@ -9,6 +9,9 @@ import "semantic-ui"
 $(document).on('turbo:load', function () {
     $('.ui.dropdown').dropdown();
 		$('.ui.accordion').accordion();
+		$('#js-sidebar').click(function() {
+			$('.ui.sidebar').sidebar('toggle');
+		});
 
 })
 
