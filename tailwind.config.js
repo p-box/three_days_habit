@@ -4,5 +4,12 @@ module.exports = {
     './app/helpers/**/*.rb',
     './app/assets/stylesheets/**/*.css',
     './app/javascript/**/*.js'
-  ]
+  ],
+  theme: {
+    extend: {
+      colors: {
+        hoge: '#3F3D56',
+      },
+    },
+  }
 }
